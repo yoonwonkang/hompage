@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 맘대로 이름을 정해도 되지만 이름에 일관성을 부여하여 유지보수를 편하게 하기 위해 이렇게 한다 -->
+<mapper namespace="net.bitacademy.java41.dao.ProjectDao">
+	<!-- 메소드의 이름을 id로 사용 -->
+	<select id="listByMember" parameterType="string" resultType="MemberProject">
+		select t1.PNO as no,t1.TITLE,t2.LEVEL
+		from SPMS_PRJS t1, SPMS_PRJMEMB t2
+		where t1.PNO=t2.PNO
+		and t2.EMAIL=#{value}
+	</select>
+
+	<select id="list" resultType="Project">
+		select
+		PNO as no,
+		TITLE,
+		START_DATE as startDate,
+		END_DATE as endDate
+		from SPMS_PRJS
+		order by PNO desc
+	</select>
+
+	<select id="get" parameterType="int" resultType="Project">
+		select
+		PNO as no,
+		TITLE,
+		CONTENT,
+		START_DATE as startDate,
+		END_DATE as endDate,
+		TAG
+		from SPMS_PRJS
+		where PNO=#{value}
+	</select>
+
+	<insert id="add" parameterType="Project" useGeneratedKeys="true"
+		keyProperty="no">
+		insert into
+		SPMS_PRJS(TITLE,CONTENT,START_DATE,END_DATE,TAG)
+		values(#{title},#{content},#{startDate},#{endDate},#{tag})
+	</insert>
+
+	<insert id="addProjectMember" parameterType="map">
+		insert into
+		SPMS_PRJMEMB( EMAIL,PNO,LEVEL)
+		values(#{email},#{projectNo},#{memberlevel})
+	</insert>
+
+	<update id="update" parameterType="Project">
+		update SPMS_PRJS set
+		TITLE=#{title},
+		CONTENT=#{content},
+		START_DATE=#{startDate},
+		END_DATE=#{endDate},
+		TAG=#{tag}
+		where PNO=#{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from SPMS_PRJS 
+		where PNO=#{value}
+	</delete>
+	
+	<delete id="deleteProjectMember" parameterType="int">
+		delete from SPMS_PRJMEMB 
+		where PNO=#{value}
+	</delete>
+	
+	<select id="isMyProject" parameterType="map" resultType="MemberProject">
+		select * from SPMS_PRJMEMB where email=#{email} and PNO=#{no}
+	</select>
+	
+	<select id="isPL" parameterType="map" resultType="MemberProject">
+		select * from SPMS_PRJMEMB where email=#{email} and PNO=#{no}
+	</select>
+	
+	<select id="getProjectMember" parameterType="int" resultType="MemberProject">
+	select EMAIL, LEVEL from SPMS_PRJMEMB where PNO=#{value}
+	</select>
+	
+	<select id="listByProjectMember" 
+			parameterType="string" 
+			resultType="MemberProject">
+	    select t1.EMAIL, t1.MNAME as name, t2.EMAIL, t2.LEVEL
+	    from SPMS_MEMBS t1, SPMS_PRJMEMB t2
+	    where t1.EMAIL=t2.EMAIL and t2.PNO=#{value}
+	</select>
+	
+</mapper>

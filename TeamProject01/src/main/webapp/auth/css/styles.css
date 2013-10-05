@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: transparent url("http://fc00.deviantart.net/fs38/f/2008/346/c/5/Aurora_Blur_by_SkateAddiction.png") top center no-repeat;
+  background-size: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Lato", sans-serif;
+  font-size: 0.85em;
+}
+
+.m-box--box-sized, input[type="text"], input[type="email"], input[type="password"] {
+  box-sizing: border-box;
+}
+
+.m-box--sign-in {
+  width: 450px;
+  padding: 0 0 0 100px;
+  min-height: 500px;
+  margin: 4em auto 0;
+  background: transparent url("http://farm8.staticflickr.com/7395/8892417152_c86b705b30_b.jpg") -250px center no-repeat;
+}
+
+header {
+  background: #43b1aa;
+  width: 450px;
+  overflow: hidden;
+  position: relative;
+  padding: 3em 4em 3.5em 4em;
+}
+header h1 {
+  font-size: 3em;
+  font-weight: 300;
+  color: white;
+  position: relative;
+  display: inline-block;
+}
+header span {
+  font-size: 0.35em;
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+}
+header a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}
+
+.m-link--close {
+  background: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  border-bottom: 0 none;
+  font-weight: 700;
+  font-size: 2em;
+  color: #43b1aa;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 35px;
+  display: block;
+  position: absolute;
+  top: 35%;
+  right: 0;
+}
+
+.m-form--sign-in {
+  background: white;
+  padding: 1.5em 3em 1.3em 3em;
+}
+.m-form--sign-in div {
+  margin: 2.5em 0 0;
+}
+.m-form--sign-in div a {
+  color: #cccccc;
+  font-size: 0.8em;
+  display: inline;
+  float: right;
+  margin: 0 0 0.5em;
+}
+
+button[type="submit"] {
+  font-family: "Lato", sans-serif;
+  background: #43b1aa;
+  color: white;
+  border: 0 none;
+  display: block;
+  padding: 0.5em 0;
+  width: 100%;
+  font-size: 2em;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+button[type="submit"]:hover {
+  background: #249991;
+  color: #cccccc;
+}
+
+#error {
+	text-align: center;
+	font-family: "Lato", sans-serif;
+	color: #F25;
+	font-size: small;
+}
+
+#forgot {
+	color: #042422;
+	font-size: xx-small;
+}
+
+fieldset {
+  border: 1px solid #d8d8d8;
+  margin: 0 0 0.65em;
+  position: relative;
+}
+fieldset span {
+  color: #d8d8d8;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 0.9em 0 0;
+  width: 10% !important;
+  display: inline;
+  float: left;
+}
+fieldset span.m-field-error {
+  padding: 0;
+  width: auto;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  display: inline;
+  float: left;
+  font-family: "Lato", sans-serif;
+  font-size: 1.4em;
+  line-height: 1;
+  border: 0px solid transparent;
+  width: 90%;
+  height: 2.6em;
+  line-height: 100%;
+  font-weight: 300;
+}
+input:focus {
+  color: #042422;
+}
+input + span:after {
+  display: none;
+}
+
+input:required {
+  border-right: 5px solid white;
+}
+
+input:invalid:focus {
+  border-right: 5px solid #da4e3b;
+}
+input:invalid:focus + span:after {
+  width: 250px;
+  display: block;
+  background: #da4e3b;
+  color: white;
+  padding: 0.6em 2em;
+  position: absolute;
+  top: 0;
+  right: -92%;
+}
+input:invalid:focus + span:before {
+  content: "\25C2";
+  position: absolute;
+  font-size: 2em;
+  line-height: 1;
+  color: #da4e3b;
+  z-index: 2;
+  top: 8%;
+  right: -8%;
+}
+
+input[type="email"]:invalid:focus + span:after {
+  content: "Email입력(EX:) m01@spms.com";
+}
+
+input[type="password"]:invalid:focus + span:after {
+  content: "비밀번호를 입력해주세요";
+}
+
+input[name="configpassword"]:invalid:focus + span:after {
+  content: "비밀번호 확인";
+}
+
+input[name="name"]:invalid:focus + span:after {
+  content: "정확한 이름 (EX:) m01 or 홍길동";
+}
+
+input[name="tel"]:invalid:focus + span:after {
+  content: "전화번호 또는 핸드폰 번호 입력";
+}
+
+input:valid:focus {
+  border-right: 5px solid #a9db48;
+}
+input:valid:focus + span:after {
+  width: 250px;
+  display: block;
+  background: #a9db48;
+  color: white;
+  padding: 0.6em 2em;
+  position: absolute;
+  top: 0;
+  right: -92%;
+}
+input:valid:focus + span:before {
+  content: "\25C2";
+  position: absolute;
+  font-size: 2em;
+  line-height: 1;
+  color: #a9db48;
+  z-index: 2;
+  top: 8%;
+  right: -8%;
+}
+
+input[type="email"]:valid:focus + span:after {
+  content: "You're ready for the next step !";
+}
+
+input[type="password"]:valid:focus + span:after {
+  content: "That\s a nice one !";
+}
+
+.m-list--other-sign-in li {
+  display: inline;
+  float: left;
+}
+.m-list--other-sign-in a {
+  width: 150px;
+  height: 100px;
+  line-height: 100px;
+  color: #bccccb;
+  font-size: 2em;
+  text-decoration: none;
+  display: block;
+  background: #ebe5e4;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+.m-list--other-sign-in a:hover {
+  background: #c7d0d0;
+  color: #43b1aa;
+}
+.m-list--other-sign-in span {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #cccccc;
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+}
+
+::-webkit-validation-bubble {
+  display: none;
+}

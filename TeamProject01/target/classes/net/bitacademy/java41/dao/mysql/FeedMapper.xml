@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bitacademy.java41.dao.FeedDao">
+	<select id="list" resultType="Feed" parameterType="int">
+		select EMAIL,CONTENT,REG_DATE as regDate,FNO as feedNo from SPMS_FEEDS where PNO=#{value} order by FNO DESC
+	</select> 
+	
+	<select id="listAll" resultType="Feed">
+		select EMAIL,CONTENT,REG_DATE as regDate,FNO as feedNo from SPMS_FEEDS order by FNO DESC
+	</select> 
+	
+	<select id="get" resultType="Feed" parameterType="int">
+		select EMAIL,PNO as projectNo,CONTENT,REG_DATE as regDate,FNO as feedNo 
+		from SPMS_FEEDS where FNO=#{value}
+	</select> 
+
+	<insert id="add" parameterType="Feed" useGeneratedKeys="true">
+		insert into SPMS_FEEDS(CONTENT,REG_DATE,EMAIL,PNO)  values(#{content},now(),#{email},#{projectNo})
+	</insert>
+	
+	<select id="getPersonalImg" resultType="Photo">
+		select IMGURL as fileName ,EMAIL
+		from SPMS_MEMIMG
+		where EMAIL=#{value}
+	</select> 
+	
+	
+	
+	
+<!-- 
+	<update id="update" parameterType="Task">
+		update SPMS_TASKS set title=#{title}, UIPROTOURL=#{uiProtoUrl}, 
+			CONTENT=#{content}, START_DATE=#{startDate}, END_DATE=#{endDate}, STATUS=#{status}
+			 where tno=#{taskNo}
+	</update>
+ -->	
+	
+	<update id="alterDelete">
+		alter table SPMS_FEEDS add constraint foreign key (PNO,EMAIL)  REFERENCES SPMS_PRJMEMB (PNO,EMAIL) ON DELETE CASCADE ON UPDATE CASCADE
+	</update>
+	
+	<delete id="remove" parameterType="int">
+		delete from SPMS_FEEDS where FNO=#{value}
+	</delete>
+</mapper>
